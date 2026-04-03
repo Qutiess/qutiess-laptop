@@ -15,17 +15,17 @@ image-version: latest # latest is also supported if you want new updates ASAP
 modules:
     - type: dnf
         install:
-        packages:
-            - dangerzone
-            - duperemove
-            - emacs
-            - xonsh
-            - zsh
-            - zsh-autosuggestions
+            packages:
+                - dangerzone
+                - duperemove
+                - emacs
+                - xonsh
+                - zsh
+                - zsh-autosuggestions
 
         remove:
-        packages:
-            # example: removing firefox (in favor of the flatpak)
-            # "firefox" is the main package, "firefox-langpacks" is a dependency
+            packages:
+                # example: removing firefox (in favor of the flatpak)
+                # "firefox" is the main package, "firefox-langpacks" is a dependency
 
     - type: signing # this sets up the proper policy & signing files for signed images to work fully
