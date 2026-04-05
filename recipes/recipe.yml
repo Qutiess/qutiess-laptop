@@ -16,7 +16,7 @@ modules:
     - type: dnf
       repos:
         files:
-        - ./files/usr/etc/yum.repos.d/dangerzone.repo
+        - ./files/system/etc/yum.repos.d/dangerzone.repo
       install:
         packages:
           - dangerzone
