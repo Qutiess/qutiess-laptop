@@ -14,12 +14,8 @@ image-version: latest # latest is also supported if you want new updates ASAP
 # you can include multiple instances of the same module
 modules:
     - type: dnf
-      repos:
-        files:
-        - dangerzone.repo
       install:
         packages:
-          - dangerzone
           - duperemove
           - emacs
           - xonsh
