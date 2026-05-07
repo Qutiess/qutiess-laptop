@@ -19,9 +19,6 @@ modules:
           - duperemove
           - emacs
           - xonsh
-          - zsh
-          - zsh-autosuggestions
-          - zsh-syntax-highlighting
           - libvterm
           - alacritty
 
