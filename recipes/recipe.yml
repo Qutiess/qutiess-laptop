@@ -22,6 +22,7 @@ modules:
           - zsh
           - zsh-autosuggestions
           - zsh-syntax-highlighting
+          - vterm
 
     - type: script
       scripts:
