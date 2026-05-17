@@ -42,3 +42,18 @@ jobs:
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
+  provenance:
+    needs: [bluebuild]
+    permissions:
+      actions: read # for detecting the Github Actions environment.
+      id-token: write # for creating OIDC tokens for signing.
+      packages: write # for uploading attestations.
+      # Currently this must be referenced by tag, not by hash:
+      # https://github.com/slsa-framework/slsa-github-generator?tab=readme-ov-file#referencing-slsa-builders-and-generators
+      uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v2.1.0
+      with:
+        image: ${{ needs.bluebuild.outputs.FULL_IMAGE_REF }}
+        digest: ${{ needs.bluebuild.outputs.IMAGE_DIGEST }}
+        registry-username: ${{ github.actor }}
+        secrets:
+          registry-password: ${{ secrets.GITHUB_TOKEN }}
