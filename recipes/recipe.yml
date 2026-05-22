@@ -21,6 +21,7 @@ modules:
           - xonsh
           - libvterm
           - alacritty
+          - gamescope
 
     - type: script
       scripts:
