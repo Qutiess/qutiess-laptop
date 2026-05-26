@@ -22,6 +22,9 @@ jobs:
       contents: read
       packages: write
       id-token: write
+    outputs:
+      FULL_IMAGE_REF: ${{ steps.runner_setup.outputs.FULL_IMAGE_REF }}
+      IMAGE_DIGEST: ${{ steps.image_manifest_metadata.outputs.IMAGE_DIGEST }}
     strategy:
       fail-fast: false # stop GH from cancelling all matrix builds if one fails
       matrix:
@@ -39,9 +42,21 @@ jobs:
           pr_event_number: ${{ github.event.number }}
           rechunk: true
           verify_install: true
+          # slsa-verifier installation
+          tuf-repo-cdn.sigstore.dev:443
+          rekor.sigstore.dev:443
+
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
+      - name: Parse image manifest
+        id: image_manifest_metadata
+        shell: bash
+        env:
+          FULL_IMAGE_REF: ${{ steps.runner_setup.outputs.FULL_IMAGE_REF }}
+          run: |
+            IMAGE_DIGEST=$(regctl image digest "${FULL_IMAGE_REF}")
+            echo "IMAGE_DIGEST=${IMAGE_DIGEST}" >> "${GITHUB_OUTPUT}"
 
   provenance:
     needs: [bluebuild]
