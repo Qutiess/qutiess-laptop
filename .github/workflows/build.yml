@@ -42,10 +42,6 @@ jobs:
           pr_event_number: ${{ github.event.number }}
           rechunk: true
           verify_install: true
-          # slsa-verifier installation
-          tuf-repo-cdn.sigstore.dev:443
-          rekor.sigstore.dev:443
-
 
           # enabled by default, disable if your image is small and you want faster builds
           maximize_build_space: true
